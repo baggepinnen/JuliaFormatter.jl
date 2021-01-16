@@ -29,7 +29,7 @@ end
 @inline n_macrocall!(ys::YASStyle, fst::FST, s::State) = n_call!(ys, fst, s)
 @inline n_typedcomprehension!(ys::YASStyle, fst::FST, s::State) = n_call!(ys, fst, s)
 
-function n_tupleh!(ys::YASStyle, fst::FST, s::State)
+function n_tuple!(ys::YASStyle, fst::FST, s::State)
     style = getstyle(ys)
     fst.indent = s.line_offset
     length(fst.nodes) > 0 && is_opener(fst[1]) && (fst.indent += 1)
@@ -56,11 +56,11 @@ function n_tupleh!(ys::YASStyle, fst::FST, s::State)
         end
     end
 end
-@inline n_braces!(ys::YASStyle, fst::FST, s::State) = n_tupleh!(ys, fst, s)
-@inline n_vect!(ys::YASStyle, fst::FST, s::State) = n_tupleh!(ys, fst, s)
-@inline n_parameters!(ys::YASStyle, fst::FST, s::State) = n_tupleh!(ys, fst, s)
-@inline n_invisbrackets!(ys::YASStyle, fst::FST, s::State) = n_tupleh!(ys, fst, s)
-@inline n_comprehension!(ys::YASStyle, fst::FST, s::State) = n_tupleh!(ys, fst, s)
+@inline n_braces!(ys::YASStyle, fst::FST, s::State) = n_tuple!(ys, fst, s)
+@inline n_vect!(ys::YASStyle, fst::FST, s::State) = n_tuple!(ys, fst, s)
+@inline n_parameters!(ys::YASStyle, fst::FST, s::State) = n_tuple!(ys, fst, s)
+@inline n_invisbrackets!(ys::YASStyle, fst::FST, s::State) = n_tuple!(ys, fst, s)
+@inline n_comprehension!(ys::YASStyle, fst::FST, s::State) = n_tuple!(ys, fst, s)
 
 function n_generator!(ys::YASStyle, fst::FST, s::State)
     style = getstyle(ys)
